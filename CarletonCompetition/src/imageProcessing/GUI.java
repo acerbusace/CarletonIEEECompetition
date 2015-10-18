@@ -41,6 +41,7 @@ public class GUI extends JFrame implements Runnable {
 	int imageNum = 1;
 	BufferedImage background = null;
 	BufferedImage img = null;
+	int radius = 5;
 
 
 	boolean once = false;
@@ -73,6 +74,7 @@ public class GUI extends JFrame implements Runnable {
 
 			background = ImageIO.read(new File(backgroundPath + "th_DSC_0258" + ext));
 			img = ImageIO.read(new File(imagePATH + String.valueOf(imageNum) + ext));
+			//img = ImageIO.read(new File(backgroundPath + "th_DSC_0258" + ext));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -178,8 +180,41 @@ public class GUI extends JFrame implements Runnable {
 				}
 			}
 			
-			for (int i = 0; i < background.getWidth(); i++){
-				
+			boolean washerGood = false;
+			for (int i = radius; i < img.getWidth() - radius; i++){
+				for (int j = radius; j < img.getHeight() - radius; j++){
+					boolean correct = true;
+					
+					for (int k = 0; k < radius; k++){
+						int y = (int) Math.sqrt(Math.pow(radius, 2) + Math.pow(k, 2));
+						if (img.getRGB(i + k, j + y) == new Color(255, 255, 255).getRGB()){
+							System.out.println("Not Correct!!!");
+							correct = false;
+							break;
+						}
+					}
+					
+					if (correct){
+						washerGood = true;
+						
+						for (int k = 0; k < radius; k++){
+							int y = (int) Math.sqrt(Math.pow(radius, 2) + Math.pow(k, 2));
+							img.setRGB(i + k, j + y, new Color(255, 0, 0).getRGB());
+							
+						}
+						
+						
+						
+						break;
+					}
+				}
+				if (washerGood){
+					break;
+				}
+			}
+			
+			if (washerGood){
+				System.out.println("Good Washer!!!");
 			}
 
 			once = true;
