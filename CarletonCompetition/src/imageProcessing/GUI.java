@@ -189,7 +189,7 @@ public class GUI extends JFrame implements Runnable {
 					
 					for (int k = 0; k <= radius; k++){
 						int y = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(k, 2));
-						if (img.getRGB(i + k + offset, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i + k, j - y - offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j - y - offset) == new Color(255, 255, 255).getRGB()){
+						if (img.getRGB(i + k, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i + k, j - y - offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j - y - offset) == new Color(255, 255, 255).getRGB()){
 							System.out.println("Not Correct!!!");
 							correct = false;
 							break;
