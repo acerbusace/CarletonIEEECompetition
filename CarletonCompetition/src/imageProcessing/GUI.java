@@ -33,7 +33,7 @@ public class GUI extends JFrame implements Runnable {
 
 	int width = 600; //sets the width of the window/JFrame
 	int height = 600; //sets the height of the window/JFrame
-	
+
 	String imagePATH = "Directory/Samples/t";
 	String backgroundPath = "Directory/Background/";
 	String ext = ".bmp";
@@ -41,12 +41,12 @@ public class GUI extends JFrame implements Runnable {
 	int imageNum = 1;
 	BufferedImage background = null;
 	BufferedImage img = null;
-	
-	
+
+
 	boolean once = false;
 	boolean running; //keeps the while loop inside the "run()" method running
-	
-	
+
+
 	public GUI ()
 	{
 		super ("Pixels!"); //changes the name of the top of the window to "Missile Command"
@@ -63,10 +63,10 @@ public class GUI extends JFrame implements Runnable {
 		//sets the windows/JFrame to visible
 		setVisible (true);
 
-		
+
 		//try and catch statement, if the image file could not be found
 		try {
-			
+
 			//the following lines of code take the names of the buffered images above and relate them to the images actually found
 			//in the game files using the ImageIO.read command to 'read' these images and incorporate them into the program. as mentioned
 			//above, most of these screens are externally developed (Microsoft Paint) to suit the design of the game.
@@ -78,7 +78,7 @@ public class GUI extends JFrame implements Runnable {
 			// TODO Auto-generated catch block
 			System.out.println("Could not load the image files.");
 		}
-		
+
 		running = true;
 	}
 
@@ -95,7 +95,7 @@ public class GUI extends JFrame implements Runnable {
 		// TODO Auto-generated method stub
 
 		//Calculates when the game should be updated and when the window/JFrame should be updates
-		
+
 		long lastTime = System.nanoTime ();
 		double nsPerCalc = 1000000000D / 60D;
 
@@ -120,7 +120,7 @@ public class GUI extends JFrame implements Runnable {
 				calcs++;
 
 				//Program's Logic
-					calc ();
+				calc ();
 
 				delta -= 1;
 				shouldRender = true;
@@ -160,22 +160,28 @@ public class GUI extends JFrame implements Runnable {
 
 	private void calc() {
 		// TODO Auto-generated method stub
-		
-		
+
+
 		if (!once){
 			System.out.println("Once");
 			for (int i = 0; i < background.getWidth(); i++){
+
 				//System.out.println("Outer Loop");
 				for (int j = 0; j < background.getHeight(); j++){
 					//System.out.println("Inner Loop");
-					if (Math.abs(background.getRGB(i, j) - img.getRGB(i, j)) < 96){
-						System.out.println(":D:D:D");
-						img.setRGB(i, j, 255);
+					System.out.println(Math.abs(background.getRGB(i, j) - img.getRGB(i, j)));
+					if (Math.abs(background.getRGB(i, j) - img.getRGB(i, j)) < 999999){
+						//System.out.println(":D:D:D");
+						img.setRGB(i, j, new Color(255, 255, 255).getRGB());
 						//img.set
 					}
 				}
 			}
 			
+			for (int i = 0; i < background.getWidth(); i++){
+				
+			}
+
 			once = true;
 		}
 	}
@@ -192,9 +198,9 @@ public class GUI extends JFrame implements Runnable {
 			Graphics2D g2 = (Graphics2D) g;
 
 			g2.drawImage(img, 0, 0, null);
-			
-			
-			
+
+
+
 		}
 	}
 
