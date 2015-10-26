@@ -34,9 +34,9 @@ public class GUI extends JFrame implements Runnable {
 	BufferedImage background2 = null;
 	BufferedImage img = null;
 	BufferedImage img2 = null;
-	int radius = 16;
+	int radius = 13;
 	int radiusEnd = 16;
-	int offset = 0;
+	int offset = 4;
 
 	Font font = new Font("Calibri",Font.BOLD,fontSize);
 	String print = "";
@@ -176,11 +176,11 @@ public class GUI extends JFrame implements Runnable {
 				for (int i = 0; i < background.getWidth(); i++){
 
 					for (int j = 0; j < background.getHeight(); j++){
-						if (Math.abs(background.getRGB(i, j) - img.getRGB(i, j)) < 999999){
+						if (Math.abs(background.getRGB(i, j) - img.getRGB(i, j)) < 777777){
 							img.setRGB(i, j, new Color(255, 255, 255).getRGB());
 						}
 						
-						if (Math.abs(background2.getRGB(i, j) - img2.getRGB(i, j)) < 999999){
+						if (Math.abs(background2.getRGB(i, j) - img2.getRGB(i, j)) < 777777){
 							img2.setRGB(i, j, new Color(255, 255, 255).getRGB());
 						}
 					}
@@ -189,7 +189,7 @@ public class GUI extends JFrame implements Runnable {
 				//checks if the washer is good or not
 				boolean washerGood = false;
 				//loops over every pixel
-				for (int i = radiusEnd - offset; i < img.getWidth() - radiusEnd + offset; i++){
+				for (int i = radiusEnd; i < img.getWidth() - radiusEnd; i++){
 					for (int j = radiusEnd + offset; j < img.getHeight() - radiusEnd - offset; j++){
 						boolean correct = true;
 
@@ -197,7 +197,7 @@ public class GUI extends JFrame implements Runnable {
 						for (int r = radius; r <= radiusEnd; r++){
 							for (int k = 0; k <= r; k++){
 								int y = (int) Math.sqrt(Math.pow(r, 2) - Math.pow(k, 2));
-								if (img.getRGB(i + k - offset, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i + k - offset, j - y - offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k + offset, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k + offset, j - y - offset) == new Color(255, 255, 255).getRGB()){
+								if (img.getRGB(i + k, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i + k, j - y - offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j + y + offset) == new Color(255, 255, 255).getRGB() || img.getRGB(i - k, j - y - offset) == new Color(255, 255, 255).getRGB()){
 									correct = false;
 									break;
 								}
@@ -210,10 +210,10 @@ public class GUI extends JFrame implements Runnable {
 							//draws the detection circle
 							for (int k = 0; k <= radius; k++){
 								int y = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(k, 2));
-								img.setRGB(i + k - offset, j + y + offset, new Color(255, 0, 0).getRGB());
-								img.setRGB(i + k - offset, j - y - offset, new Color(255, 0, 0).getRGB());
-								img.setRGB(i - k + offset, j + y + offset, new Color(255, 0, 0).getRGB());
-								img.setRGB(i - k + offset, j - y - offset, new Color(255, 0, 0).getRGB());
+								img.setRGB(i + k, j + y + offset, new Color(255, 0, 0).getRGB());
+								img.setRGB(i + k, j - y - offset, new Color(255, 0, 0).getRGB());
+								img.setRGB(i - k, j + y + offset, new Color(255, 0, 0).getRGB());
+								img.setRGB(i - k, j - y - offset, new Color(255, 0, 0).getRGB());
 							}
 
 							break;
@@ -223,7 +223,7 @@ public class GUI extends JFrame implements Runnable {
 							for (int r = radius; r <= radiusEnd; r++){
 								for (int k = 0; k <= r; k++){
 									int y = (int) Math.sqrt(Math.pow(r, 2) - Math.pow(k, 2));
-									if (img2.getRGB(i + k - offset, j + y + offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i + k - offset, j - y - offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i - k + offset, j + y + offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i - k + offset, j - y - offset) == new Color(255, 255, 255).getRGB()){
+									if (img2.getRGB(i + k, j + y + offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i + k, j - y - offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i - k, j + y + offset) == new Color(255, 255, 255).getRGB() || img2.getRGB(i - k, j - y - offset) == new Color(255, 255, 255).getRGB()){
 										correct = false;
 										break;
 									}
@@ -235,10 +235,10 @@ public class GUI extends JFrame implements Runnable {
 
 								for (int k = 0; k <= radius; k++){
 									int y = (int) Math.sqrt(Math.pow(radius, 2) - Math.pow(k, 2));
-									img2.setRGB(i + k - offset, j + y + offset, new Color(255, 0, 0).getRGB());
-									img2.setRGB(i + k - offset, j - y - offset, new Color(255, 0, 0).getRGB());
-									img2.setRGB(i - k + offset, j + y + offset, new Color(255, 0, 0).getRGB());
-									img2.setRGB(i - k + offset, j - y - offset, new Color(255, 0, 0).getRGB());
+									img2.setRGB(i + k, j + y + offset, new Color(255, 0, 0).getRGB());
+									img2.setRGB(i + k, j - y - offset, new Color(255, 0, 0).getRGB());
+									img2.setRGB(i - k, j + y + offset, new Color(255, 0, 0).getRGB());
+									img2.setRGB(i - k, j - y - offset, new Color(255, 0, 0).getRGB());
 								}
 
 								break;
