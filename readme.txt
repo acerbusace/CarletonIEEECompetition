@@ -10,7 +10,6 @@ The "source_code" folder contains the source code in eclipse.
 
 Instructions 
 ------------
-
 1) Download and extract the zip file
 2) Launch the "WasherDetector.jar" file
 
