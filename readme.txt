@@ -12,7 +12,7 @@ Instructions
 ------------
 
 1) Download and extract the zip file
-3) Launch the "WasherDetector.jar" file
+2) Launch the "WasherDetector.jar" file
 
 Note
 ----
